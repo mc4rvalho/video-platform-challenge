@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎥 StreamView - Video Platform Challenge
 
-## Getting Started
+Este projeto é uma plataforma de visualização de vídeos desenvolvida como resolução de um desafio técnico. A aplicação permite aos usuários visualizar vídeos através de iframes, buscar por títulos específicos e salvar seus vídeos favoritos.
 
-First, run the development server:
+## 🚀 Tecnologias Utilizadas
 
-```bash
+- **[Next.js 15](https://nextjs.org/)** (App Router & Server Components)
+- **[React](https://react.dev/)**
+- **[TypeScript](https://www.typescriptlang.org/)**
+- **[Tailwind CSS](https://tailwindcss.com/)** (com `prettier-plugin-tailwindcss` para ordenação de classes)
+- **[Lucide React](https://lucide.dev/)** (Ícones)
+- **[React Query](https://tanstack.com/query/latest)** (Gerenciamento de estado de chamadas HTTP)
+- **Husky & Lint-Staged** (Qualidade de código e padronização de commits)
+
+## 📂 Arquitetura e Estrutura de Pastas
+
+A aplicação foi organizada de forma modular, focando em Clean Code e separação de responsabilidades:
+
+\`\`\`text
+src/
+ ┣ app/
+ ┃ ┣ api/videos/route.ts    # API Mockada (Route Handler)
+ ┃ ┣ favorites/page.tsx     # Página de Favoritos
+ ┃ ┣ layout.tsx             # Root layout com o Header global
+ ┃ ┗ page.tsx               # Home (Player Principal + Lista)
+ ┣ components/
+ ┃ ┣ Header/                # Navegação principal
+ ┃ ┣ SearchBar/             # Barra de pesquisa
+ ┃ ┣ VideoPlayer/           # Componente de visualização (iframe)
+ ┃ ┣ VideoCard/             # Card individual do vídeo (Thumbnail + Info)
+ ┃ ┗ VideoList/             # Container Grid para renderizar os cards
+ ┣ hooks/
+ ┃ ┣ useVideos.ts           # Hook do React Query para chamadas na API
+ ┃ ┗ useFavorites.ts        # Hook para gerenciar estado no localStorage
+ ┣ types/
+ ┃ ┗ video.ts               # Tipagens TypeScript (ex: IVideo)
+ ┗ utils/                   # Funções auxiliares (ex: debounce)
+\`\`\`
+
+## ⚙️ Como rodar o projeto localmente
+
+1. Clone o repositório:
+\`\`\`bash
+git clone https://github.com/seu-usuario/video-platform-challenge.git
+\`\`\`
+
+2. Acesse a pasta do projeto:
+\`\`\`bash
+cd video-platform-challenge
+\`\`\`
+
+3. Instale as dependências:
+\`\`\`bash
+npm install
+\`\`\`
+
+4. Inicie o servidor de desenvolvimento:
+\`\`\`bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+\`\`\`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Abra o navegador e acesse:
+**[http://localhost:3000](http://localhost:3000)**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Funcionalidades
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- [x] Listagem de vídeos consumindo uma API Mockada.
+- [x] Player de vídeo integrado via iframe (YouTube).
+- [ ] Sistema de favoritos com persistência local (LocalStorage).
+- [ ] Busca e filtragem em tempo real de vídeos por título.
+- [x] Design totalmente responsivo (Mobile e Desktop).
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+*Desenvolvido com dedicação para o teste técnico.*
