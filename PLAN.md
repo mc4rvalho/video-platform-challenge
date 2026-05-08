@@ -39,8 +39,8 @@ Este documento mapeia o plano de execução para o desenvolvimento da plataforma
 - [x] `feat(hooks)`: Criar o hook `useFavorites.ts` para gerenciar a persistência no `localStorage`.
 - [x] `feat(ui)`: Integrar o `useVideos` na página Home (`src/app/page.tsx`) e passar os dados para o `VideoList`.
 - [x] `feat(ui)`: Implementar a lógica de busca na `SearchBar` (passando o termo de busca para filtrar a lista de vídeos).
-- [ ] `feat(pages)`: Desenvolver a página de Favoritos (`src/app/favorites/page.tsx`) listando os vídeos salvos.
-- [ ] `feat(player)`: Fazer com que o clique em um `VideoCard` carregue o vídeo no `VideoPlayer` principal.
+- [x] `feat(pages)`: Desenvolver a página de Favoritos (`src/app/favorites/page.tsx`) listando os vídeos salvos.
+- [x] `feat(player)`: Fazer com que o clique em um `VideoCard` carregue o vídeo no `VideoPlayer` principal.
 
 ---
 
@@ -50,8 +50,8 @@ Este documento mapeia o plano de execução para o desenvolvimento da plataforma
 - [ ] `style(ui)`: Refinar a responsividade (garantir que o player e o grid fiquem perfeitos no mobile e desktop).
 - [ ] `style(ux)`: Adicionar animações de hover nos cards de vídeo e transições suaves.
 - [ ] `chore(a11y)`: Revisar acessibilidade (adicionar `aria-labels` nos botões e iframes, garantir contraste de cores).
-- [ ] `feat(utils)`: (Opcional) Criar uma função de *debounce* na busca para otimizar o filtro de vídeos.
-- [ ] `test(hooks)`: (Opcional) Configurar Jest e escrever testes unitários para a função de favoritar (localStorage).
+- [ ] `feat(utils)`: Criar uma função de *debounce* na busca para otimizar o filtro de vídeos.
+- [ ] `test(hooks)`: Configurar Jest e escrever testes unitários para a função de favoritar (localStorage).
 
 ---
 

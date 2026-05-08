@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { VideoList } from "../components/VideoList";
 import { VideoPlayer } from "../components/VideoPlayer";
 import { IVideo } from "../types/video";
@@ -11,15 +11,31 @@ export default function Home() {
   // Pega o parâmetro 'q' da URL
   const searchParams = useSearchParams()
   const searchQuery = searchParams.get('q') || ''
+  const videoIdParam = searchParams.get('v')
 
   // Toda vez que a URL mudar, ele refaz o fetch filtrado
   const { data: videos, isLoading, isError } = useVideos(searchQuery);
   const [selectedVideo, setSelectedVideo] = useState<IVideo | null>(null);
 
   // Define o primeiro vídeo como selecionado automaticamente se nenhum estiver (Autoplay de início)
-  if (videos && videos.length > 0 && !selectedVideo) {
-    setSelectedVideo(videos[0]);
-  }
+  useEffect(() => {
+    if (videos && videos.length > 0) {
+      // Se tiver um ID na URL, ou seja, veio dos favoritos, procura ele na lista e seleciona
+      if (videoIdParam) {
+        const videoFromUrl = videos.find((v) => v.id === videoIdParam);
+        if (videoFromUrl) {
+          setSelectedVideo(videoFromUrl);
+          return;
+        }
+      }
+      
+      // Se não tiver ID na URL, apenas seleciona o primeiro vídeo da lista (Autoplay padrão)
+      if (!selectedVideo) {
+        setSelectedVideo(videos[0]);
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [videos, videoIdParam]);
 
   if (isLoading)
     return (
@@ -32,7 +48,7 @@ export default function Home() {
       <div className="mt-10 text-center text-red-500">
         Erro ao carregar os vídeos.
       </div>
-    );
+    ); 
 
   return (
     <div className="flex flex-col gap-8 lg:flex-row">
