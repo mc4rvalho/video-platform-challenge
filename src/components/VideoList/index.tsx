@@ -1,11 +1,12 @@
-import { IVideo } from '@/types/video';
-import { VideoCard } from '../VideoCard';
+import { IVideo } from "@/types/video";
+import { VideoCard } from "../VideoCard";
 
 interface VideoListProps {
   videos: IVideo[];
+  onVideoSelect: (video: IVideo) => void;
 }
 
-export function VideoList({ videos }: VideoListProps) {
+export function VideoList({ videos, onVideoSelect }: VideoListProps) {
   if (!videos || videos.length === 0) {
     return <p className="text-zinc-400">Nenhum vídeo encontrado.</p>;
   }
@@ -13,7 +14,11 @@ export function VideoList({ videos }: VideoListProps) {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {videos.map((video) => (
-        <VideoCard key={video.id} video={video} />
+        <VideoCard
+          key={video.id}
+          video={video}
+          onSelect={() => onVideoSelect(video)}
+        />
       ))}
     </div>
   );
