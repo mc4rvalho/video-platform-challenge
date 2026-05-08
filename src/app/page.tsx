@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { VideoList } from "../components/VideoList";
 import { VideoPlayer } from "../components/VideoPlayer";
