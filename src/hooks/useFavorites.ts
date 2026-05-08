@@ -1,43 +1,50 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { IVideo } from "../types/video";
+import { useState, useEffect, useCallback } from "react";
+import { IVideo } from "@/types/video";
 
 export function useFavorites() {
   const [favorites, setFavorites] = useState<IVideo[]>([]);
 
-  // Carrega os favoritos do localStorage ao iniciar
-  useEffect(() => {
+  const loadFavorites = useCallback(() => {
     const stored = localStorage.getItem("@streamview:favorites");
     if (stored) {
       setFavorites(JSON.parse(stored));
     }
   }, []);
 
-  // Adiciona ou remove o vídeo da lista e salva no localStorage
+  useEffect(() => {
+     // Carrega na primeira vez
+    loadFavorites();
+
+    // Fica "escutando" se alguém emitiu o evento de atualização
+    window.addEventListener("favoritesUpdated", loadFavorites);
+
+    // Limpeza do evento quando o componente morre
+    return () => window.removeEventListener("favoritesUpdated", loadFavorites);
+  }, [loadFavorites]);
+
   const toggleFavorite = (video: IVideo) => {
-    setFavorites((prev) => {
-      const isAlreadyFavorite = prev.some((v) => v.id === video.id);
+    // Busca a lista mais recente direto do localStorage para evitar conflitos
+    const stored = localStorage.getItem("@streamview:favorites");
+    const currentFavorites: IVideo[] = stored ? JSON.parse(stored) : [];
 
-      let newFavorites;
-      if (isAlreadyFavorite) {
-        // Se já é favorito, remove
-        newFavorites = prev.filter((v) => v.id !== video.id);
-      } else {
-        // Se não é, adiciona
-        newFavorites = [...prev, video];
-      }
+    const isAlreadyFavorite = currentFavorites.some((v) => v.id === video.id);
 
-      // Salva a nova lista no localStorage
-      localStorage.setItem(
-        "@streamview:favorites",
-        JSON.stringify(newFavorites),
-      );
-      return newFavorites;
-    });
+    let newFavorites;
+    if (isAlreadyFavorite) {
+      newFavorites = currentFavorites.filter((v) => v.id !== video.id);
+    } else {
+      newFavorites = [...currentFavorites, video];
+    }
+
+    localStorage.setItem("@streamview:favorites", JSON.stringify(newFavorites));
+    setFavorites(newFavorites);
+
+    // Faz a página de favoritos remover o item instantaneamente
+    window.dispatchEvent(new Event("favoritesUpdated"));
   };
 
-  // Função auxiliar para o componente saber se pinta o coração de vermelho
   const isFavorite = (videoId: string) => {
     return favorites.some((v) => v.id === videoId);
   };

@@ -59,7 +59,7 @@ export default function Home() {
 
       {/* Lado direto: Lista de vídeos (Siderbar) */}
       <div className="w-full lg:w-1/3 xl:w-1/4">
-        <h2 className="m-4 text-xl font-bold text-zinc-100">Recomendados</h2>
+        <h2 className="m-4 text-xl font-bold  text-zinc-900 dark:text-zinc-100">Recomendados</h2>
         <div className="flex flex-col gap-4">
           <VideoList videos={videos || []} onVideoSelect={setSelectedVideo} className="flex flex-col gap-4" />
         </div>

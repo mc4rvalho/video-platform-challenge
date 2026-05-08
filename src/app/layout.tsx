@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { QueryProvider } from "../providers/QueryProvider";
+import { ThemeProvider } from "../providers/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,14 +18,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning>
       <body
-        className={`${inter.className} min-h-screen bg-zinc-950 text-zinc-50 antialiased`}
+        className={`${inter.className} min-h-screen bg-white text-zinc-900 antialiased transition-colors duration-300 dark:bg-zinc-950 dark:text-zinc-50`}
       >
-        <QueryProvider>
-          <Header />
-          <main className="mx-auto max-w-7xl p-6">{children}</main>
-        </QueryProvider>
+        <ThemeProvider>
+          <QueryProvider>
+            <Header />
+            <main className="mx-auto max-w-7xl p-6">{children}</main>
+          </QueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

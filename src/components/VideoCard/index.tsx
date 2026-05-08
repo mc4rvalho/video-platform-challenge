@@ -44,10 +44,14 @@ export function VideoCard({ video, onSelect }: VideoCardProps) {
 
       {/* Informações */}
       <div className="flex flex-col gap-1 px-1">
-        <h3 className="line-clamp-2 text-sm leading-tight font-semibold text-zinc-100">
+        {/* Título do vídeo */}
+        <h3 className="line-clamp-2 text-sm leading-tight font-semibold text-zinc-900 dark:text-zinc-100">
           {video.title}
         </h3>
-        <p className="text-xs text-zinc-400">{video.channel}</p>
+        {/* Nome do canal */}
+        <p className="text-xs text-zinc-500 dark:text-zinc-400">
+          {video.channel}
+        </p>
       </div>
     </div>
   );

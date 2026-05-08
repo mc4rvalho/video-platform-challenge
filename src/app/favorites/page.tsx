@@ -17,7 +17,7 @@ export default function FavoritesPage() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center gap-3 border-b border-zinc-800 pb-4">
-        <h1 className="text-3xl font-bold text-zinc-50">Meus Favoritos</h1>
+        <h1 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50">Meus Favoritos</h1>
         <span className="rounded-full bg-zinc-800 px-3 py-1 text-sm font-medium text-zinc-300">
           {favorites.length} {favorites.length === 1 ? 'vídeo' : 'vídeos'}
         </span>
