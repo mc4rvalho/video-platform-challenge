@@ -5,12 +5,15 @@ import { VideoList } from "../components/VideoList";
 import { VideoPlayer } from "../components/VideoPlayer";
 import { IVideo } from "../types/video";
 import { useVideos } from "../hooks/useVideos";
+import { useSearchParams } from "next/navigation";
 
 export default function Home() {
-  // Conecta com o SearchBar do Header
-  const [searchTerm, setSearchTerm] = useState("");
+  // Pega o parâmetro 'q' da URL
+  const searchParams = useSearchParams()
+  const searchQuery = searchParams.get('q') || ''
 
-  const { data: videos, isLoading, isError } = useVideos(searchTerm);
+  // Toda vez que a URL mudar, ele refaz o fetch filtrado
+  const { data: videos, isLoading, isError } = useVideos(searchQuery);
   const [selectedVideo, setSelectedVideo] = useState<IVideo | null>(null);
 
   // Define o primeiro vídeo como selecionado automaticamente se nenhum estiver (Autoplay de início)
@@ -42,7 +45,7 @@ export default function Home() {
       <div className="w-full lg:w-1/3 xl:w-1/4">
         <h2 className="m-4 text-xl font-bold text-zinc-100">Recomendados</h2>
         <div className="flex flex-col gap-4">
-          <VideoList videos={videos || []} onVideoSelect={setSelectedVideo} />
+          <VideoList videos={videos || []} onVideoSelect={setSelectedVideo} className="flex flex-col gap-4" />
         </div>
       </div>
     </div>

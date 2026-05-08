@@ -19,7 +19,7 @@ Este documento mapeia o plano de execução para o desenvolvimento da plataforma
 
 ---
 
-## 🏃‍♂️ Sprint 2: Componentes Base e UI (Sexta-feira)
+## 🏃‍♂️ Sprint 2: Componentes Base e UI (Quinta-feira)
 **Objetivo:** Construir a interface visual (casca) sem se preocupar com a lógica de estado ou chamadas reais à API ainda.
 
 - [x] `feat(ui)`: Criar o componente `Header` com a logo e navegação básica.
@@ -31,20 +31,20 @@ Este documento mapeia o plano de execução para o desenvolvimento da plataforma
 
 ---
 
-## 🏃‍♂️ Sprint 3: Integração e Estado (Sábado)
+## 🏃‍♂️ Sprint 3: Integração e Estado (Sexta-feira)
 **Objetivo:** Dar vida à aplicação! Conectar a UI com a API usando React Query e implementar o LocalStorage.
 
-- [ ] `chore(query)`: Instalar o `@tanstack/react-query` e configurar o Provider no `layout.tsx`.
-- [ ] `feat(hooks)`: Criar o hook `useVideos.ts` para fazer o fetch da rota `/api/videos`.
-- [ ] `feat(hooks)`: Criar o hook `useFavorites.ts` para gerenciar a persistência no `localStorage`.
-- [ ] `feat(ui)`: Integrar o `useVideos` na página Home (`src/app/page.tsx`) e passar os dados para o `VideoList`.
-- [ ] `feat(ui)`: Implementar a lógica de busca na `SearchBar` (passando o termo de busca para filtrar a lista de vídeos).
+- [x] `chore(query)`: Instalar o `@tanstack/react-query` e configurar o Provider no `layout.tsx`.
+- [x] `feat(hooks)`: Criar o hook `useVideos.ts` para fazer o fetch da rota `/api/videos`.
+- [x] `feat(hooks)`: Criar o hook `useFavorites.ts` para gerenciar a persistência no `localStorage`.
+- [x] `feat(ui)`: Integrar o `useVideos` na página Home (`src/app/page.tsx`) e passar os dados para o `VideoList`.
+- [x] `feat(ui)`: Implementar a lógica de busca na `SearchBar` (passando o termo de busca para filtrar a lista de vídeos).
 - [ ] `feat(pages)`: Desenvolver a página de Favoritos (`src/app/favorites/page.tsx`) listando os vídeos salvos.
 - [ ] `feat(player)`: Fazer com que o clique em um `VideoCard` carregue o vídeo no `VideoPlayer` principal.
 
 ---
 
-## 🏃‍♂️ Sprint 4: Diferenciais e Refinamento (Domingo)
+## 🏃‍♂️ Sprint 4: Diferenciais e Refinamento (Sexta-feira)
 **Objetivo:** Polir a aplicação para impressionar os avaliadores e garantir que todos os requisitos extras foram atendidos.
 
 - [ ] `style(ui)`: Refinar a responsividade (garantir que o player e o grid fiquem perfeitos no mobile e desktop).
@@ -55,7 +55,7 @@ Este documento mapeia o plano de execução para o desenvolvimento da plataforma
 
 ---
 
-## 🚀 Sprint 5: Entrega (Segunda-feira)
+## 🚀 Sprint 5: Entrega (Sábado)
 **Objetivo:** Revisão final, documentação e envio do repositório.
 
 - [ ] `docs(readme)`: Escrever o `README.md` final do projeto com instruções de como rodar localmente.
