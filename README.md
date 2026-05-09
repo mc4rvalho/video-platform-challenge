@@ -108,5 +108,3 @@ src/
 ---
 
 *Desenvolvido com foco em boas práticas de Engenharia de Software Frontend.*
-
-```
