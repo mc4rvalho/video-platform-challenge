@@ -1,74 +1,112 @@
-# 🎥 StreamView - Video Platform Challenge
+# 🎥 StreamView - Video Platform
 
-Este projeto é uma plataforma de visualização de vídeos desenvolvida como resolução de um desafio técnico. A aplicação permite aos usuários visualizar vídeos através de iframes, buscar por títulos específicos e salvar seus vídeos favoritos.
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
+![React](https://img.shields.io/badge/React-19-blue?style=for-the-badge&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![React Query](https://img.shields.io/badge/React_Query-FF4154?style=for-the-badge&logo=react-query&logoColor=white)
+![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
 
-## 🚀 Tecnologias Utilizadas
+Este projeto é uma plataforma de visualização de vídeos de alta performance desenvolvida como resolução de um desafio técnico. A aplicação foi construída com foco em **Clean Code**, **Experiência do Usuário (UX)** e **Acessibilidade (a11y)**.
 
-- **[Next.js 15](https://nextjs.org/)** (App Router & Server Components)
+## ✨ Funcionalidades Entregues
+
+Além dos requisitos básicos do desafio, o projeto conta com implementações avançadas para garantir uma experiência premium:
+
+### 🎯 Core Features
+- **Player de Vídeo Integrado:** Visualização de vídeos do YouTube diretamente na plataforma.
+- **Sistema de Favoritos:** Persistência de dados local (`localStorage`) sincronizada em tempo real em todas as abas/componentes via Custom Events.
+- **Busca em Tempo Real:** Filtragem de vídeos por título ou canal com sistema de **Debounce** para otimização de performance e persistência na URL.
+- **Design Responsivo:** Layout fluido que se adapta perfeitamente do Mobile ao Desktop.
+
+### 🚀 Diferenciais (Bônus Implementados)
+- **Scroll Infinito:** Paginação contínua e otimizada utilizando `useInfiniteQuery` e Intersection Observers.
+- **Autoplay Inteligente:** O player avança automaticamente para o próximo vídeo da lista ao finalizar a reprodução atual.
+- **Dark/Light Mode:** Alternância de tema baseada na preferência do sistema do usuário ou escolha manual.
+- **Acessibilidade (a11y):** Suporte total a navegação por teclado (Tab/Enter), Focus Rings visíveis e `aria-labels` dinâmicos para leitores de tela.
+- **Testes Unitários:** Cobertura de testes de regras de negócio (Hooks) e Componentes Visuais utilizando **Jest** e **React Testing Library**.
+- **Animações (UX):** Transições suaves, botões responsivos e animação em cascata (Fade-in-up) na renderização da lista.
+- **Padronização:** Configuração rígida de linters, Prettier e Husky para Conventional Commits.
+
+---
+
+> ⚠️ **Nota Técnica - Política de Autoplay dos Navegadores:**
+> O autoplay para o *próximo* vídeo da fila funciona nativamente. No entanto, o autoplay do *primeiro* vídeo no momento exato em que a página é carregada pela primeira vez pode ser bloqueado pelos navegadores modernos (Chrome, Safari, etc.) devido à [Browser Autoplay Policy](https://developer.chrome.com/blog/autoplay/), que exige uma interação prévia do usuário (clique) antes de emitir áudio não solicitado. A aplicação foi projetada respeitando esse comportamento nativo da Web.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **[Next.js 15](https://nextjs.org/)** (App Router)
 - **[React](https://react.dev/)**
 - **[TypeScript](https://www.typescriptlang.org/)**
-- **[Tailwind CSS](https://tailwindcss.com/)** (com `prettier-plugin-tailwindcss` para ordenação de classes)
-- **[Lucide React](https://lucide.dev/)** (Ícones)
-- **[React Query](https://tanstack.com/query/latest)** (Gerenciamento de estado de chamadas HTTP)
-- **Husky & Lint-Staged** (Qualidade de código e padronização de commits)
-
-## 📂 Arquitetura e Estrutura de Pastas
-
-A aplicação foi organizada de forma modular, focando em Clean Code e separação de responsabilidades:
-
-\`\`\`text
-src/
- ┣ app/
- ┃ ┣ api/videos/route.ts    # API Mockada (Route Handler)
- ┃ ┣ favorites/page.tsx     # Página de Favoritos
- ┃ ┣ layout.tsx             # Root layout com o Header global
- ┃ ┗ page.tsx               # Home (Player Principal + Lista)
- ┣ components/
- ┃ ┣ Header/                # Navegação principal
- ┃ ┣ SearchBar/             # Barra de pesquisa
- ┃ ┣ VideoPlayer/           # Componente de visualização (iframe)
- ┃ ┣ VideoCard/             # Card individual do vídeo (Thumbnail + Info)
- ┃ ┗ VideoList/             # Container Grid para renderizar os cards
- ┣ hooks/
- ┃ ┣ useVideos.ts           # Hook do React Query para chamadas na API
- ┃ ┗ useFavorites.ts        # Hook para gerenciar estado no localStorage
- ┣ types/
- ┃ ┗ video.ts               # Tipagens TypeScript (ex: IVideo)
- ┗ utils/                   # Funções auxiliares (ex: debounce)
-\`\`\`
+- **[Tailwind CSS v4](https://tailwindcss.com/)**
+- **[TanStack Query v5](https://tanstack.com/query/latest)** (Gerenciamento de cache e paginação)
+- **[React YouTube](https://github.com/tjallingt/react-youtube)** (Wrapper de Iframe com eventos)
+- **[Jest & Testing Library](https://testing-library.com/)** (Testes Unitários)
+- **[Lucide React](https://lucide.dev/)** (Ícones SVG otimizados)
 
 ## ⚙️ Como rodar o projeto localmente
 
 1. Clone o repositório:
-\`\`\`bash
-git clone https://github.com/seu-usuario/video-platform-challenge.git
-\`\`\`
+```bash
+git clone [https://github.com/seu-usuario/video-platform-challenge.git](https://github.com/seu-usuario/video-platform-challenge.git)
+
+```
 
 2. Acesse a pasta do projeto:
-\`\`\`bash
+
+```bash
 cd video-platform-challenge
-\`\`\`
+
+```
 
 3. Instale as dependências:
-\`\`\`bash
+
+```bash
 npm install
-\`\`\`
+
+```
 
 4. Inicie o servidor de desenvolvimento:
-\`\`\`bash
+
+```bash
 npm run dev
-\`\`\`
 
-5. Abra o navegador e acesse:
-**[http://localhost:3000](http://localhost:3000)**
+```
 
-## ✨ Funcionalidades
+5. Abra o navegador e acesse: **[http://localhost:3000](https://www.google.com/search?q=http://localhost:3000)**
 
-- [x] Listagem de vídeos consumindo uma API Mockada.
-- [x] Player de vídeo integrado via iframe (YouTube).
-- [ ] Sistema de favoritos com persistência local (LocalStorage).
-- [ ] Busca e filtragem em tempo real de vídeos por título.
-- [x] Design totalmente responsivo (Mobile e Desktop).
+## 🧪 Como rodar os Testes
+
+Para garantir o funcionamento das regras de negócio e renderização, execute:
+
+```bash
+# Rodar todos os testes (Hooks e Componentes UI)
+npm run test
+
+# Rodar em modo interativo (Watch)
+npm run test:watch
+
+```
+
+## 📂 Arquitetura (Resumo)
+
+```text
+src/
+ ┣ app/
+ ┃ ┣ api/videos/     # API Mockada com paginação inteligente
+ ┃ ┣ favorites/      # Rota de Favoritos isolada
+ ┃ ┗ page.tsx        # Home (Player + Lista Infinita)
+ ┣ components/       # Componentes burros/apresentacionais e inteligentes
+ ┣ hooks/            # Regras de negócio separadas da UI (ex: useFavorites)
+ ┣ providers/        # Configurações globais (React Query, Tema)
+ ┗ types/            # Tipagens globais TypeScript
+
+```
 
 ---
-*Desenvolvido com dedicação para o teste técnico.*
+
+*Desenvolvido com foco em boas práticas de Engenharia de Software Frontend.*
+
+```

@@ -53,16 +53,16 @@ Este documento mapeia o plano de execução para o desenvolvimento da plataforma
 - [x] `feat(utils)`: Criar uma função de *debounce* na busca para otimizar o filtro de vídeos.
 - [x] `feat(theme)`: Implementar alternância de tema Claro/Escuro (Dark Mode) com persistência de preferência.
 - [x] `test(hooks)`: Configurar Jest e escrever testes unitários para a função de favoritar (localStorage).
-- [ ] `feat(api)`: Expandir a API Mockada (Next.js Route Handlers) para suportar parâmetros de paginação.
-- [ ] `feat(ux)`: Implementar Scroll Infinito na lista de vídeos da Home.
-- [ ] `feat(player)`: Implementar Autoplay para carregar e iniciar o próximo vídeo da lista automaticamente.
+- [x] `feat(api)`: Expandir a API Mockada (Next.js Route Handlers) para suportar parâmetros de paginação.
+- [x] `feat(ux)`: Implementar Scroll Infinito na lista de vídeos da Home.
+- [x] `feat(player)`: Implementar Autoplay para carregar e iniciar o próximo vídeo da lista automaticamente.
 
 ---
 
 ## 🚀 Sprint 5: Entrega (Sábado)
 **Objetivo:** Revisão final, documentação e envio do repositório.
 
-- [ ] `docs(readme)`: Escrever o `README.md` final do projeto com instruções de como rodar localmente.
-- [ ] `chore(deploy)`: (Opcional) Fazer o deploy na Vercel para enviar um link do projeto rodando na nuvem.
-- [ ] `chore(review)`: Revisão final do código (Clean Code, remoção de logs, checagem do Husky).
-- [ ] Enviar o link do repositório para avaliação! 🎉
+- [x] `docs(readme)`: Escrever o `README.md` final do projeto com instruções de como rodar localmente.
+- [x] `chore(deploy)`: (Opcional) Fazer o deploy na Vercel para enviar um link do projeto rodando na nuvem.
+- [x] `chore(review)`: Revisão final do código (Clean Code, remoção de logs, checagem do Husky).
+- [x] Enviar o link do repositório para avaliação! 🎉
