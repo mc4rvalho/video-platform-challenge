@@ -42,14 +42,13 @@ export function VideoCard({ video, onSelect }: VideoCardProps) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={video.thumbnailUrl}
-          alt={`Capa do vídeo ${video.title}`} // A11y: Adicionando mais contexto ao alt
+          alt={`Capa do vídeo ${video.title}`}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
 
         {/* Botão de Favoritar */}
         <button
           onClick={handleFavoriteClick}
-          // A11y: Leitores de tela agora sabem exatamente o que este botão com um ícone faz
           aria-label={
             favorited
               ? `Remover ${video.title} dos favoritos`
