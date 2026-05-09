@@ -50,8 +50,8 @@ Este documento mapeia o plano de execução para o desenvolvimento da plataforma
 - [ ] `style(ui)`: Refinar a responsividade (garantir que o player e o grid fiquem perfeitos no mobile e desktop).
 - [ ] `style(ux)`: Adicionar animações de hover nos cards de vídeo e transições suaves.
 - [ ] `chore(a11y)`: Revisar acessibilidade (adicionar `aria-labels` nos botões e iframes, garantir contraste de cores).
-- [ ] `feat(utils)`: Criar uma função de *debounce* na busca para otimizar o filtro de vídeos.
-- [ ] `feat(theme)`: Implementar alternância de tema Claro/Escuro (Dark Mode) com persistência de preferência.
+- [x] `feat(utils)`: Criar uma função de *debounce* na busca para otimizar o filtro de vídeos.
+- [x] `feat(theme)`: Implementar alternância de tema Claro/Escuro (Dark Mode) com persistência de preferência.
 - [ ] `test(hooks)`: Configurar Jest e escrever testes unitários para a função de favoritar (localStorage).
 
 ---

@@ -18,7 +18,7 @@ export function VideoPlayer({ video }: VideoPlayerProps) {
       <div className="aspect-video w-full overflow-hidden rounded-xl bg-black shadow-lg">
         <iframe
           src={video.videoUrl}
-          title={video.title}
+          title={`Player de vídeo: ${video.title}`}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
           className="h-full w-full border-0"
