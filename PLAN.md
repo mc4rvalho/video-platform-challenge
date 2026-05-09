@@ -47,12 +47,15 @@ Este documento mapeia o plano de execução para o desenvolvimento da plataforma
 ## 🏃‍♂️ Sprint 4: Diferenciais e Refinamento (Sexta-feira)
 **Objetivo:** Polir a aplicação para impressionar os avaliadores e garantir que todos os requisitos extras foram atendidos.
 
-- [ ] `style(ui)`: Refinar a responsividade (garantir que o player e o grid fiquem perfeitos no mobile e desktop).
-- [ ] `style(ux)`: Adicionar animações de hover nos cards de vídeo e transições suaves.
+- [x] `style(ui)`: Refinar a responsividade (garantir que o player e o grid fiquem perfeitos no mobile e desktop).
+- [x] `style(ux)`: Adicionar animações de hover nos cards de vídeo e transições suaves.
 - [x] `chore(a11y)`: Revisar acessibilidade (adicionar `aria-labels` nos botões e iframes, garantir contraste de cores).
 - [x] `feat(utils)`: Criar uma função de *debounce* na busca para otimizar o filtro de vídeos.
 - [x] `feat(theme)`: Implementar alternância de tema Claro/Escuro (Dark Mode) com persistência de preferência.
-- [ ] `test(hooks)`: Configurar Jest e escrever testes unitários para a função de favoritar (localStorage).
+- [x] `test(hooks)`: Configurar Jest e escrever testes unitários para a função de favoritar (localStorage).
+- [ ] `feat(api)`: Expandir a API Mockada (Next.js Route Handlers) para suportar parâmetros de paginação.
+- [ ] `feat(ux)`: Implementar Scroll Infinito na lista de vídeos da Home.
+- [ ] `feat(player)`: Implementar Autoplay para carregar e iniciar o próximo vídeo da lista automaticamente.
 
 ---
 
