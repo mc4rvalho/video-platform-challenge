@@ -1,30 +1,25 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { IVideo } from "../types/video";
 
-// Função responsável pelo fetch
-async function fetchVideos(search: string): Promise<IVideo[]> {
-  const response = await fetch("/api/videos");
-
-  if (!response.ok) {
-    throw new Error("Erro ao buscar vídeos");
-  }
-
-  const data: IVideo[] = await response.json();
-  if (search) {
-    return data.filter((video) =>
-      video.title.toLowerCase().includes(search.toLowerCase()),
-    );
-  }
-
-  return data;
+// Interface para o novo formato da API
+interface VideoResponse {
+  data: IVideo[];
+  nextPage: number | null;
+  total: number;
 }
 
-// Hook customizado
-export function useVideos(search: string = "") {
-  return useQuery({
-    queryKey: ["videos", search],
-    queryFn: () => fetchVideos(search),
-    // Mantém o cache por 5 minutos
-    staleTime: 1000 * 60 * 5,
+// Função responsável pelo fetch
+export function useVideos(searchQuery: string = "") {
+  return useInfiniteQuery<VideoResponse>({
+    queryKey: ["videos", searchQuery],
+    queryFn: async ({ pageParam = 1 }) => {
+      const res = await fetch(
+        `/api/videos?q=${searchQuery}&page=${pageParam}&limit=4`,
+      );
+      if (!res.ok) throw new Error("Erro ao buscar o vídeo");
+      return res.json();
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => lastPage.nextPage,
   });
 }
