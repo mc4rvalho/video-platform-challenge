@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { VideoList } from "../components/VideoList";
 import { VideoPlayer } from "../components/VideoPlayer";
 import { IVideo } from "../types/video";
@@ -8,7 +8,7 @@ import { useVideos } from "../hooks/useVideos";
 import { useSearchParams } from "next/navigation";
 import { useInView } from "react-intersection-observer";
 
-export default function Home() {
+function HomeContent() {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("q") || "";
   const videoIdParam = searchParams.get("v");
@@ -120,5 +120,19 @@ export default function Home() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense
+      fallback={
+        <div className="mt-10 text-center text-zinc-500">
+          Carregando plataforma...
+        </div>
+      }
+    >
+      <HomeContent />
+    </Suspense>
   );
 }

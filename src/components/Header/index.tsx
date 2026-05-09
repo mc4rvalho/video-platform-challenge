@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SearchBar } from "../SearchBar";
 import { Heart, PlaySquare } from "lucide-react";
 import { ThemeToggle } from "../ThemeToggle";
+import { Suspense } from "react";
 
 export function Header() {
   return (
@@ -31,7 +32,13 @@ export function Header() {
 
       {/* Busca */}
       <div className="order-last flex w-full flex-1 justify-center md:order-0 md:w-auto md:px-6">
-        <SearchBar />
+        <Suspense
+          fallback={
+            <div className="h-10 w-full max-w-md animate-pulse rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
+          }
+        >
+          <SearchBar />
+        </Suspense>
       </div>
     </header>
   );
