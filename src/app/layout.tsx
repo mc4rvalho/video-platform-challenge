@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { QueryProvider } from "../providers/QueryProvider";
 import { ThemeProvider } from "../providers/ThemeProvider";
+import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +29,11 @@ export default function RootLayout({
             <main className="mx-auto max-w-7xl p-6">{children}</main>
           </QueryProvider>
         </ThemeProvider>
+
+        <Toaster
+          position="bottom-right"
+          toastOptions={{ className: "dark:bg-zinc-800 dark:text-white" }}
+        />
       </body>
     </html>
   );

@@ -7,6 +7,7 @@ import { IVideo } from "../types/video";
 import { useVideos } from "../hooks/useVideos";
 import { useSearchParams } from "next/navigation";
 import { useInView } from "react-intersection-observer";
+import { useHistory } from "../hooks/useHistory";
 
 function HomeContent() {
   const searchParams = useSearchParams();
@@ -24,25 +25,46 @@ function HomeContent() {
   } = useVideos(searchQuery);
 
   const { ref, inView } = useInView();
+  
+  const { addToHistory } = useHistory();
 
   const [selectedVideo, setSelectedVideo] = useState<IVideo | null>(null);
 
   // Junção dos dados em uma página só
   const allVideos = data?.pages.flatMap((page) => page.data) || [];
 
-  // Lógica do Autoplay Inicial e Favoritos
+  // Lógica do Autoplay Inicial e Tratamento de Links Compartilhados
   useEffect(() => {
-    if (allVideos.length > 0) {
-      if (videoIdParam) {
-        const videoFromUrl = allVideos.find((v) => v.id === videoIdParam);
-        if (videoFromUrl) {
-          setSelectedVideo(videoFromUrl);
-          return;
-        }
+    if (allVideos.length === 0) return;
+
+    if (videoIdParam) {
+      // Para evitar um loop infinito
+      if (selectedVideo?.id === videoIdParam) return;
+
+      // 1. Tenta achar o vídeo na lista que já está visível na tela (ex: Página 1)
+      const videoFromUrl = allVideos.find((v) => v.id === videoIdParam);
+
+      if (videoFromUrl) {
+        setSelectedVideo(videoFromUrl);
+      } else {
+        // 2. Se o vídeo compartilhado estiver perdido lá na Página 3, ele faz um fetch rápido com limite alto só para achá-lo sem quebrar o scroll da lateral
+        fetch(`/api/videos?limit=50`)
+          .then((res) => res.json())
+          .then((json) => {
+            const found = json.data.find((v: IVideo) => v.id === videoIdParam);
+            if (found) {
+              setSelectedVideo(found);
+            } else if (!selectedVideo) {
+              setSelectedVideo(allVideos[0]);
+            }
+          })
+          .catch(() => {
+            if (!selectedVideo) setSelectedVideo(allVideos[0]);
+          });
       }
-      if (!selectedVideo) {
-        setSelectedVideo(allVideos[0]);
-      }
+    } else if (!selectedVideo) {
+      // Se não tem link compartilhado, toca o primeiro da lista
+      setSelectedVideo(allVideos[0]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, videoIdParam]);
@@ -67,6 +89,33 @@ function HomeContent() {
     }
   };
 
+  // Registra o vídeo no histórico sempre que ele for selecionado
+  useEffect(() => {
+    if (selectedVideo) {
+      addToHistory(selectedVideo);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedVideo]);
+
+  // Lógica para mudar o título da aba do navegador dinamicamente
+  useEffect(() => {
+    if (selectedVideo) {
+      document.title = `▶️ ${selectedVideo.title} | StreamView`;
+    } else {
+      document.title = `StreamView | Video Platform`;
+    }
+  }, [selectedVideo]);
+
+  // Lógica para selecionar o vídeo e rolar a tela para o topo
+  const handleSelectVideo = (video: IVideo) => {
+    setSelectedVideo(video);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   if (isLoading)
     return (
       <div className="mt-10 text-center text-zinc-400">
@@ -79,16 +128,6 @@ function HomeContent() {
         Erro ao carregar os vídeos.
       </div>
     );
-
-  // Lógica para selecionar o vídeo e rolar a tela para o topo
-  const handleSelectVideo = (video: IVideo) => {
-    setSelectedVideo(video);
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
 
   return (
     <div className="flex flex-col gap-8 lg:flex-row">

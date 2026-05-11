@@ -66,3 +66,12 @@ Este documento mapeia o plano de execução para o desenvolvimento da plataforma
 - [x] `chore(deploy)`: (Opcional) Fazer o deploy na Vercel para enviar um link do projeto rodando na nuvem.
 - [x] `chore(review)`: Revisão final do código (Clean Code, remoção de logs, checagem do Husky).
 - [x] Enviar o link do repositório para avaliação! 🎉
+
+## 🚀 Sprint 6: Over-delivery & UX Avançada (Segunda-feira - Manhã)
+**Objetivo:** Adicionar funcionalidades de alto impacto focadas na retenção e conveniência do usuário (aprovado pela avaliação).
+
+- [x] `feat(ux)`: Adicionar sistema de notificações (Toast) para feedback de ações.
+- [x] `feat(ux)`: Implementar botão de compartilhamento com Deep Link (`?v=id`) copiado para a área de transferência.
+- [x] `feat(ux)`: Alterar dinamicamente o `<title>` da aba do navegador para refletir o vídeo em reprodução.
+- [x] `feat(history)`: Criar sistema de Histórico de Exibição, salvando os vídeos assistidos no localStorage e criando a rota `/history`.
+- [x] \test(hooks)`: Ampliar a cobertura de testes unitários para 100% dos hooks (`useDebounce`, `useHistory`, `useVideos`).`

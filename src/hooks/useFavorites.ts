@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { IVideo } from "@/types/video";
+import toast from "react-hot-toast";
 
 export function useFavorites() {
   const [favorites, setFavorites] = useState<IVideo[]>([]);
@@ -34,8 +35,10 @@ export function useFavorites() {
     let newFavorites;
     if (isAlreadyFavorite) {
       newFavorites = currentFavorites.filter((v) => v.id !== video.id);
+      toast.error("Removido dos favoritos", {icon: '💔'})
     } else {
       newFavorites = [...currentFavorites, video];
+      toast.error("Adicionado aos favoritos", {icon: '❤️'})
     }
 
     localStorage.setItem("@streamview:favorites", JSON.stringify(newFavorites));

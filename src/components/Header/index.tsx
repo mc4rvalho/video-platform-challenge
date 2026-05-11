@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SearchBar } from "../SearchBar";
-import { Heart, PlaySquare } from "lucide-react";
+import { Heart, HistoryIcon, PlaySquare } from "lucide-react";
 import { ThemeToggle } from "../ThemeToggle";
 import { Suspense } from "react";
 
@@ -27,6 +27,16 @@ export function Header() {
           <Heart className="h-5 w-5" />
           <span className="hidden sm:block">Favoritos</span>
         </Link>
+
+        <Link
+          href="/history"
+          className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
+        >
+          <HistoryIcon className="h-5 w-5" />
+          <span className="hidden sm:block">Histórico</span>
+        </Link>
+        <Link href="/favorites"></Link>
+
         <ThemeToggle />
       </div>
 

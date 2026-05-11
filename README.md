@@ -27,6 +27,10 @@ Além dos requisitos básicos do desafio, o projeto conta com implementações a
 - **Testes Unitários:** Cobertura de testes de regras de negócio (Hooks) e Componentes Visuais utilizando **Jest** e **React Testing Library**.
 - **Animações (UX):** Transições suaves, botões responsivos e animação em cascata (Fade-in-up) na renderização da lista.
 - **Padronização:** Configuração rígida de linters, Prettier e Husky para Conventional Commits.
+- **Feedback Visual (Toasts):** Sistema de notificações dinâmicas para ações do usuário (favoritos, compartilhamento).
+- **Deep Linking e Compartilhamento:** Botão de *Share* que gera uma URL única para o vídeo atual, permitindo que outros usuários acessem diretamente a página com o vídeo já carregado no player.
+- **Histórico de Exibição:** Registro automático de vídeos assistidos em tempo real (`/history`), com opção de limpeza de cache local.
+- **Dynamic Meta Titles:** O título da aba do navegador é atualizado dinamicamente para mostrar o vídeo em reprodução.
 
 ---
 
